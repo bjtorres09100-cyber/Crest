@@ -21,6 +21,7 @@
 
 // --- CC1101 Sub-GHz Radio Module ---
 #define CC1101_CS 5
+#define CC1101_GDO0 17
 
 // --- NRF24L01 2.4GHz Radio Module ---
 #define NRF24_CSN 4

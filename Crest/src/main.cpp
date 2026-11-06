@@ -7,6 +7,7 @@
 #include "wifi_app.h"
 #include "nrf_app.h"
 #include "ir_app.h"
+#include "subghz_app.h"
 
 // Forward declare display management handlers
 extern void initDisplay();
@@ -44,6 +45,7 @@ void setup() {
     digitalWrite(LARGE_DISP_CS, HIGH);
     
     initMenu();
+    initSubGhzApp();
 }
 
 void loop() {
@@ -56,6 +58,9 @@ void loop() {
             break;
         case STATE_NRF: 
             loopNrfApp();
+            break;
+        case STATE_SUBGHZ:
+            loopSubGhzApp();
             break;
         case STATE_IR:
             loopIrApp();

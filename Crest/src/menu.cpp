@@ -14,7 +14,8 @@ extern void renderCanvas();
 
 const char* menuItems[] = {
     "Wi-Fi Suite",
-    "NRF24 Suite",     
+    "NRF24 Suite",
+    "CC1101 Link",
     "BLE Scanner",
     "IR TV-B-Gone"
 };
@@ -22,11 +23,12 @@ const char* menuItems[] = {
 const char* menuIcons[] = {
     "[WIFI]",
     "[NRF!]",         
+    "[433M]",
     "[BT-S]",
     "[IR-X]"
 };
 
-const int totalItems = 4;
+const int totalItems = 5;
 int currentIndex = 0;
 
 void initMenu() {
@@ -48,7 +50,7 @@ void drawMenu() {
         display.fillCircle(120, 6, 2, SSD1306_BLACK);
 
         // Main Content Frame Renderer
-        int startingItem = (currentIndex >= 2) ? 2 : 0;
+        int startingItem = (currentIndex >= 3) ? 3 : (currentIndex >= 2 ? 2 : 0);
         
         for (int i = startingItem; i < startingItem + 2; i++) {
             if (i >= totalItems) break;
@@ -98,8 +100,9 @@ void loopMenu() {
             extern void drawNrfSubMenu();
             drawNrfSubMenu(); 
         }
-        if (currentIndex == 2) currentState = STATE_BLE;
-        if (currentIndex == 3) currentState = STATE_IR;
+        if (currentIndex == 2) currentState = STATE_SUBGHZ;
+        if (currentIndex == 3) currentState = STATE_BLE;
+        if (currentIndex == 4) currentState = STATE_IR;
         clearCanvas();
     }
 }
